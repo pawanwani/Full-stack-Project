@@ -73,12 +73,11 @@ export default function getRouter(){
             }
         })
         .patch(async(req, res)=>{
-            try{
-                // let bloger = new Blogs(req.body);
+                        try{
                 let blog = await Blogs.findOneAndUpdate({title : req.params.name}, {subtitle : req.body.subtitle, body : req.body.body})
+                console.log(req.body.subtitle)
                 res.json({
-                    message : 'succsful',
-                    data : blog
+                    message : 'succsful'
                 })
             }
             catch(err){
@@ -90,27 +89,27 @@ export default function getRouter(){
         })
 
 
-        router
-        .route('/blogs/:name/user')
-        .get(async(req, res) => {
-            try{
-                let blog = await Blogs.findOne({title : req.params.name});
-                let writer = blog?.writer;
-                console.log(writer);
-                console.log(typeof(writer));
-                let user = await Users.find({_id : writer})
-                res.json({
-                    message : 'succsful',
-                    data : user
-                })
-            }
-            catch(err){
-                res.json({
-                    message : 'failed',
-                    err
-                })
-            }
-        })
+        // router
+        // .route('/blogs/:name/user')
+        // .get(async(req, res) => {
+        //     try{
+        //         let blog = await Blogs.findOne({title : req.params.name});
+        //         let writer = blog?.writer;
+        //         console.log(writer);
+        //         console.log(typeof(writer));
+        //         let user = await Users.find({_id : writer})
+        //         res.json({
+        //             message : 'succsful',
+        //             data : user
+        //         })
+        //     }
+        //     catch(err){
+        //         res.json({
+        //             message : 'failed',
+        //             err
+        //         })
+        //     }
+        // })
 
     
       return router;  

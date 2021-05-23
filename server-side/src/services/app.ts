@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-import env from "dotenv";
+import env from "dotenv"
 import blogRouter from '../routes/blog-router';
 import userRouter from '../routes/user-router';
 

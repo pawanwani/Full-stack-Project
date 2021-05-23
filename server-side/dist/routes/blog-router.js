@@ -41,7 +41,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var blogs_1 = __importDefault(require("../models/blogs"));
-var users_1 = __importDefault(require("../models/users"));
 var router = express_1.default.Router();
 function getRouter() {
     var _this = this;
@@ -153,9 +152,9 @@ function getRouter() {
                     return [4 /*yield*/, blogs_1.default.findOneAndUpdate({ title: req.params.name }, { subtitle: req.body.subtitle, body: req.body.body })];
                 case 1:
                     blog = _a.sent();
+                    console.log(req.body.subtitle);
                     res.json({
-                        message: 'succsful',
-                        data: blog
+                        message: 'succsful'
                     });
                     return [3 /*break*/, 3];
                 case 2:
@@ -169,39 +168,27 @@ function getRouter() {
             }
         });
     }); });
-    router
-        .route('/blogs/:name/user')
-        .get(function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-        var blog, writer, user, err_5;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, blogs_1.default.findOne({ title: req.params.name })];
-                case 1:
-                    blog = _a.sent();
-                    writer = blog === null || blog === void 0 ? void 0 : blog.writer;
-                    console.log(writer);
-                    console.log(typeof (writer));
-                    return [4 /*yield*/, users_1.default.find({ _id: writer })];
-                case 2:
-                    user = _a.sent();
-                    res.json({
-                        message: 'succsful',
-                        data: user
-                    });
-                    return [3 /*break*/, 4];
-                case 3:
-                    err_5 = _a.sent();
-                    res.json({
-                        message: 'failed',
-                        err: err_5
-                    });
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
-    }); });
+    // router
+    // .route('/blogs/:name/user')
+    // .get(async(req, res) => {
+    //     try{
+    //         let blog = await Blogs.findOne({title : req.params.name});
+    //         let writer = blog?.writer;
+    //         console.log(writer);
+    //         console.log(typeof(writer));
+    //         let user = await Users.find({_id : writer})
+    //         res.json({
+    //             message : 'succsful',
+    //             data : user
+    //         })
+    //     }
+    //     catch(err){
+    //         res.json({
+    //             message : 'failed',
+    //             err
+    //         })
+    //     }
+    // })
     return router;
 }
 exports.default = getRouter;
