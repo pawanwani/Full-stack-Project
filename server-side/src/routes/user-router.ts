@@ -1,18 +1,33 @@
 import express, { response } from "express";
 import Blogs from "../models/blogs";
-import Users from "../models/users"
+import Users from "../models/users";
+import multer from 'multer';
+
+
+const storage = multer.diskStorage({
+    destination : function(req, file, cb){
+        cb(null, './uploads/');
+    },
+    filename : function(req, file, cb){
+        cb(null, new Date().toISOString()+file.originalname)
+    }
+})
+
+const upload = multer({dest : 'uploads/'});
+
 const router =express.Router();
 
 export default function getRouter(){
     router
         .route('/register')
-        .post(async(req, res)=>{
+        .post(upload.single('image'), async(req, res)=>{
             try{
-                let user = new Users(req.body);
+                let image = req.file
+                let user = new Users({name : req.body.name, username : req.body.username, email : req.body.email ,image:req.file});
                 await user.save();
                 res.json({
                     message : 'succesful',
-                    data : user
+
                 })
             }
             catch(err:any){

@@ -42,24 +42,34 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var blogs_1 = __importDefault(require("../models/blogs"));
 var users_1 = __importDefault(require("../models/users"));
+var multer_1 = __importDefault(require("multer"));
+var storage = multer_1.default.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, new Date().toISOString() + file.originalname);
+    }
+});
+var upload = multer_1.default({ dest: 'uploads/' });
 var router = express_1.default.Router();
 function getRouter() {
     var _this = this;
     router
         .route('/register')
-        .post(function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-        var user, err_1;
+        .post(upload.single('image'), function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+        var image, user, err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    user = new users_1.default(req.body);
+                    image = req.file;
+                    user = new users_1.default({ name: req.body.name, username: req.body.username, email: req.body.email, image: req.file });
                     return [4 /*yield*/, user.save()];
                 case 1:
                     _a.sent();
                     res.json({
                         message: 'succesful',
-                        data: user
                     });
                     return [3 /*break*/, 3];
                 case 2:
