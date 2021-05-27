@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux';
 import './App.css';
 
-function App() {
+
+function App(Props:any) {
+  // console.log(Props);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Hello</h2>
+      <h2>{Props.nameR.name}</h2>
+      <button onClick = {()=>{Props.setName('Pawan')}}>Change Name</button>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state:any) =>{
+  return {
+    nameR : state.nameReducer
+  }
+}
+
+const mapDispatchToProps = (dispatch:any) => {
+  return{
+    setName : (name:any) =>{
+      dispatch({
+        type : 'SET_NAME',
+        payload : name
+      })
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
