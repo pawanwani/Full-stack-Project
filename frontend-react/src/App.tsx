@@ -1,15 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
+// import Rich from './componenets/RichTextField';
+// import Rich from './componenets/draftjsexample';
+// import Rich from './componenets/draftjs_ex1';
+// import Rich from './componenets/draft-wysiwygstyle';
+import Rich from './componenets/draft-wyang';
 
 
 function App(Props:any) {
   // console.log(Props);
   return (
-    <div className="App">
-      <h2>Hello</h2>
-      <h2>{Props.nameR.name}</h2>
-      <button onClick = {()=>{Props.setName('Pawan')}}>Change Name</button>
+    <div className="App" style={{
+      border: '1px solid #ddd',
+      borderRadius: 2,
+      boxShadow: 'inset 0px 1px 8px -3px #ABABAB',
+      padding: 16,
+      backgroundColor: '#fefefe',
+    }}>
+        <Rich />
     </div>
   );
 }
