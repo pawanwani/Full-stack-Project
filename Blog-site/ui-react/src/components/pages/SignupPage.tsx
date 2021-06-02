@@ -1,22 +1,17 @@
 import {
   Button,
-  FormControlLabel,
-  FormLabel,
   Grid,
-  Radio,
-  RadioGroup,
   TextField,
 } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import React, { ReactElement, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import BlogImg from "../images/blogImg.svg";
+
 import clsx from "clsx";
 import {
   makeStyles,
   Theme,
   createStyles,
-  ThemeProvider,
 } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import Input from "@material-ui/core/Input";
@@ -27,6 +22,9 @@ import FormControl from "@material-ui/core/FormControl";
 import PhoneAndroidRoundedIcon from "@material-ui/icons/PhoneAndroidRounded";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import BlogImg from "../images/blogImg.svg";
+import { Link } from "react-router-dom";
+import { userSignUp } from "../service/service";
 
 interface Props {}
 interface State {
@@ -53,6 +51,10 @@ export default function SignupPage({}: Props): ReactElement {
     password: "",
     showPassword: false,
   });
+  const [userName, setuserName] = useState("");
+  const [email, setemail] = useState("");
+const [phoneNumber, setphoneNumber] = useState("")
+
 
   const handleChange =
     (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,6 +70,17 @@ export default function SignupPage({}: Props): ReactElement {
   ) => {
     event.preventDefault();
   };
+  const submitFormData =(e:any) =>{
+    e.preventDefault();
+    const data = {
+      username : userName,
+      email: email,
+      phone:phoneNumber,
+      password: values.password,
+    }
+    const response = userSignUp(data);
+    response.then((res)=>console.log(res))
+  }
   return (
     <div className="bg-c wh-100">
       <Container className="mt-10 bradius img-shadow">
@@ -79,14 +92,17 @@ export default function SignupPage({}: Props): ReactElement {
           <Col xs={12} md={5} className="white borderR">
             <Container className="mt-10">
               <div className="mt-10">
+                <Link to="/user/login">
                 <Button variant="outlined" color="primary" size="small">
                   Sign In
                 </Button>
+                </Link>
               </div>
               <div className="vertically-center">
                 <div className="text-center">
                   <h2>Create an account</h2>
                 </div>
+                <form onSubmit={submitFormData}>
                 <div
                   style={{
                     display: "flex",
@@ -104,9 +120,11 @@ export default function SignupPage({}: Props): ReactElement {
                         <TextField
                           id="input-with-icon-grid"
                           label="User Name"
+                          onChange={(e:any)=>{setuserName(e.target.value)}}
+                          value={userName}
                         />
                       </Grid>
-                      <Grid item>
+                      <Grid item style={{borderBottom:"1px solid #949494"}}>
                         <AccountCircle />
                       </Grid>
                     </Grid>
@@ -118,9 +136,13 @@ export default function SignupPage({}: Props): ReactElement {
                       alignItems="flex-end"
                     >
                       <Grid item>
-                        <TextField id="input-with-icon-grid" label="Email" />
+                        <TextField  label="Email" 
+                        onChange={(e:any)=>{setemail(e.target.value)}}
+                        value={email}
+                        />
+                        
                       </Grid>
-                      <Grid item>
+                      <Grid item style={{borderBottom:"1px solid #949494"}}>
                         <EmailRoundedIcon />
                       </Grid>
                     </Grid>
@@ -133,11 +155,12 @@ export default function SignupPage({}: Props): ReactElement {
                     >
                       <Grid item>
                         <TextField
-                          id="input-with-icon-grid"
                           label="Mobile Number"
+                          onChange={(e:any)=>{setphoneNumber(e.target.value)}}
+                          value={phoneNumber}
                         />
                       </Grid>
-                      <Grid item>
+                      <Grid item style={{borderBottom:"1px solid #949494"}}>
                         <PhoneAndroidRoundedIcon />
                       </Grid>
                     </Grid>
@@ -159,6 +182,7 @@ export default function SignupPage({}: Props): ReactElement {
                           endAdornment={
                             <InputAdornment position="end">
                               <IconButton
+                                className="p-0"
                                 aria-label="toggle password visibility"
                                 onClick={handleClickShowPassword}
                                 onMouseDown={handleMouseDownPassword}
@@ -175,7 +199,7 @@ export default function SignupPage({}: Props): ReactElement {
                       </FormControl>
                     </div>
                   </div>
-                  <div className="mt-10">
+                  <div className="mt-10 text-center">
                     <Button
                       variant="contained"
                       style={{
@@ -183,11 +207,13 @@ export default function SignupPage({}: Props): ReactElement {
                         color: "white",
                         padding: " 8px 55px",
                       }}
+                      type="submit"
                     >
                       Sign up
                     </Button>
                   </div>
                 </div>
+                </form>
               </div>
             </Container>
           </Col>

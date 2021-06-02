@@ -11,6 +11,9 @@
 .mt-10{
   margin-top: 10px;
 }
+.mt-20{
+  margin-top: 20px;
+}
 .bradius{
   border-radius: 10px;
 }
@@ -45,4 +48,15 @@ body{
 .vertically-center{
   margin-top: 16%;
 
+}
+.p-0{
+  padding: 0px;
+}
+@media only screen and (max-width: 768px) {
+  .blb-blt{
+    border-radius: 0px;
+  }
+  .borderR{
+    border-radius: 0px;
+  }
 }
