@@ -1,0 +1,26 @@
+.landing-image{
+  width: 100%;
+}
+.landing-body{
+    padding: 10%;
+}
+.fs-2{
+    font-size: 4vw;
+}
+.page-body-text{
+  font-size: 1.5vw;
+}
+.get-started-btn{
+  width : 200px;
+  border: none;
+  background-color: #F17082;
+  color: white;
+  padding: 10px 0px;
+  border-radius: 3px;
+  font-size: 1.2rem;
+}
+@media only screen and (max-width: 600px) {
+  .fs-2{
+    font-size: 6vw;
+  }
+}
