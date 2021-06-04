@@ -6,7 +6,10 @@ import './App.css';
 // import Rich from './componenets/draftjs_ex1';
 // import Rich from './componenets/draft-wysiwygstyle';
 import Rich from './componenets/draft-wyang';
-
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+// import DraftText from './componenets/draft-wyang';
+import Showall from './componenets/screens/Showall';
+import Profile from './componenets/screens/Profile';
 
 function App(Props:any) {
   // console.log(Props);
@@ -18,7 +21,13 @@ function App(Props:any) {
       padding: 16,
       backgroundColor: '#fefefe',
     }}>
-        <Rich />
+      <Router>
+        <Switch>
+          <Route exact path= '/' component = {Showall} />
+          <Route path = "/add" component = {Rich} />
+          <Route path = "/profile" component = {Profile} />
+        </Switch>
+      </Router>
     </div>
   );
 }

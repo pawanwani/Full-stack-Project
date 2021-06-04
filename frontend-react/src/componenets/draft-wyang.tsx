@@ -1,19 +1,33 @@
 import {Editor} from 'react-draft-wysiwyg';
 import 'F:/mindtree/Full_Project_01_words_of_wonder/Words-of-Wonder/frontend-react/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { EditorState, convertToRaw } from 'draft-js';
-import { useState } from 'react';
+import { EditorState} from 'draft-js';
+import React, { useState } from 'react';
 import {stateToHTML} from 'draft-js-export-html';
+import {Button, TextField} from '@material-ui/core';
+import SavePost from './requests/putPost';
 
 
 const WEditor = () =>{
     const [state, setState] = useState(EditorState.createEmpty());
+    const [title, setTitle] = useState(' ');
 
     const onChange = (editor:any) =>{
         setState(editor);
     }
 
+    const handleSave = () => {
+        console.log(stateToHTML(state.getCurrentContent()));
+        SavePost("the Four Encounter", 'THE DUMMY RECORD',stateToHTML(state.getCurrentContent()), '60aa4d0c9e852410a0a36c00', ['dummy', 'data'])
+    }
+    
+    const handleTitle = (e:React.ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.currentTarget.value);
+    }
+
     return(
         <div>
+            <TextField  value = "Submit title" onChange = {handleTitle}>
+            </TextField>
             <Editor
                 editorState = {state}
                 wrapperClassName="wrapper-class"
@@ -31,10 +45,13 @@ const WEditor = () =>{
                 >
             </Editor>
             <div>
-            <textarea
+            {/* <textarea
                 disabled
                 value={stateToHTML(state.getCurrentContent())}
-            />
+            /> */}
+            <Button variant = "contained" color = "primary" onClick = {handleSave}>
+                Save
+            </Button>
             </div>
         </div>
     )
