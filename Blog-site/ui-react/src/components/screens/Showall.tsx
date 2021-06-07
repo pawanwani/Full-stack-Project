@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AllData from '../requests/getPost';
 import parse from 'html-react-parser';
-import Post from '../parts/post'
+import Post from '../post/post';
 
 // material ui library
 import { makeStyles } from '@material-ui/core/styles';

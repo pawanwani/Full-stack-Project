@@ -3,8 +3,11 @@ import 'F:/mindtree/Full_Project_01_words_of_wonder/Words-of-Wonder/frontend-rea
 import { EditorState} from 'draft-js';
 import React, { useState } from 'react';
 import {stateToHTML} from 'draft-js-export-html';
-import {Button, TextField} from '@material-ui/core';
-import SavePost from './requests/putPost';
+import {Button, Container, TextField} from '@material-ui/core';
+import SavePost from '../requests/putPost';
+
+
+
 
 
 const WEditor = () =>{
@@ -25,9 +28,7 @@ const WEditor = () =>{
     }
 
     return(
-        <div>
-            <TextField  value = "Submit title" onChange = {handleTitle}>
-            </TextField>
+        <Container>
             <Editor
                 editorState = {state}
                 wrapperClassName="wrapper-class"
@@ -53,7 +54,7 @@ const WEditor = () =>{
                 Save
             </Button>
             </div>
-        </div>
+        </Container>
     )
 }
 

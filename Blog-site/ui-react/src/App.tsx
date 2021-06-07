@@ -7,6 +7,8 @@ import store from "./store/Store";
 import LoginPage from "./components/pages/LoginPage";
 import Landing from "./components/pages/LandingPage";
 import Navbar from './components/screens/navbar';
+import Showall from './components/screens/Showall';
+import WEditor from "./components/post/draft-wyang";
 
 
 
@@ -22,9 +24,15 @@ function App() {
                 <Route path = "/user/login">
                     <LoginPage/>
                 </Route>
-                <Route path = "/">
+                <Route exact path = "/">
                     <Landing/>
                 </Route>
+                <Route path = "/showall">
+                  <Showall />
+                </Route>
+                <Route path = "/addpost">
+                  <WEditor /> 
+                </Route>                  
               </Switch>
           </Router>
     </Provider>
