@@ -93,14 +93,14 @@ function getRouter() {
         });
     }); });
     router
-        .route('/blogs/:name')
+        .route('/blogs/:id')
         .get(function (req, res) { return __awaiter(_this, void 0, void 0, function () {
         var blog, err_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, blogs_1.default.find({ title: req.params.name })];
+                    return [4 /*yield*/, blogs_1.default.findById(req.params.id)];
                 case 1:
                     blog = _a.sent();
                     res.json({

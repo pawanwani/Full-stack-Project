@@ -20,7 +20,7 @@ const WEditor = () =>{
 
     const handleSave = () => {
         console.log(stateToHTML(state.getCurrentContent()));
-        SavePost("the Four Encounter", 'THE DUMMY RECORD',stateToHTML(state.getCurrentContent()), '60aa4d0c9e852410a0a36c00', ['dummy', 'data'])
+        SavePost("the sixth Encounter", 'THE DUMMY RECORD',stateToHTML(state.getCurrentContent()), '60aa4d0c9e852410a0a36c00', ['dummy', 'data'])
     }
     
     const handleTitle = (e:React.ChangeEvent<HTMLInputElement>) => {

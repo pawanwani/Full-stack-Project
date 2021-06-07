@@ -9,6 +9,7 @@ import Landing from "./components/pages/LandingPage";
 import Navbar from './components/screens/navbar';
 import Showall from './components/screens/Showall';
 import WEditor from "./components/post/draft-wyang";
+import Details from './components/screens/details';
 
 
 
@@ -32,7 +33,10 @@ function App() {
                 </Route>
                 <Route path = "/addpost">
                   <WEditor /> 
-                </Route>                  
+                </Route>
+                <Route path = "/details/:id">
+                  <Details />
+                </Route>                
               </Switch>
           </Router>
     </Provider>

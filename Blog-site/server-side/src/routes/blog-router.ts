@@ -41,10 +41,10 @@ export default function getRouter(){
 
 
     router
-        .route('/blogs/:name')
+        .route('/blogs/:id')
         .get(async(req, res) => {
             try{
-                let blog = await Blogs.find({title : req.params.name});
+                let blog = await Blogs.findById(req.params.id)
                 res.json({
                     message : 'succsful',
                     data : blog
