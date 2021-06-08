@@ -50,10 +50,15 @@ export default function Header(props:any) {
   return (
     <React.Fragment>
       <Toolbar className={classes.toolbar}>
-        <Button size="small" onClick = {() => {
-          history.push("/")
-        }}>Home</Button> &nbsp;&nbsp;&nbsp;
-       
+        <Button
+          size="small"
+          onClick={() => {
+            history.push("/");
+          }}
+        >
+          Home
+        </Button>{" "}
+        &nbsp;&nbsp;&nbsp;
         <Typography
           component="h2"
           variant="h5"
@@ -62,20 +67,38 @@ export default function Header(props:any) {
           noWrap
           className={classes.toolbarTitle}
         >
-      <Button style={{margin:'0px 40px'}}size="small">Bloglist</Button> &nbsp;&nbsp;&nbsp;
-      WORDS OF WONDER
-
-        <Button style={{margin:'0px 60px'}}size="small" onClick = {handleAddPostClick}>Add Blog</Button> 
+          <Button
+            style={{ margin: "0px 40px" }}
+            size="small"
+            onClick={() => {
+              history.push("/showall");
+            }}
+          >
+            Bloglist
+          </Button>{" "}
+          &nbsp;&nbsp;&nbsp; WORDS OF WONDER
+          <Button
+            style={{ margin: "0px 60px" }}
+            size="small"
+            onClick={handleAddPostClick}
+          >
+            Add Blog
+          </Button>
         </Typography>
-      
-     
         <IconButton>
           <SearchIcon />
         </IconButton>
-        {userState.login ? null:
-        <Button variant="outlined" size="small" onClick = {() =>{history.push("/user/login")}}>
-          Sign In
-        </Button>}
+        {userState.login ? null : (
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={() => {
+              history.push("/user/login");
+            }}
+          >
+            Sign In
+          </Button>
+        )}
       </Toolbar>
     </React.Fragment>
   );

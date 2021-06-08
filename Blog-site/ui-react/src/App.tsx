@@ -11,6 +11,7 @@ import Showall from './components/screens/Showall';
 import WEditor from "./components/post/draft-wyang";
 import Details from './components/screens/details';
 import Profile from './components/screens/Profile';
+import Postlist from "./components/screens/Postlist";
 
 
 
@@ -19,31 +20,32 @@ function App() {
     <Provider store={store}>
       <Router>
         <Navbar />
-          
-              <Switch>
-                <Route path = "/user/signup">
-                    <SignupPage />
-                </Route>
-                <Route path = "/user/login">
-                    <LoginPage/>
-                </Route>
-                <Route exact path = "/">
-                    <Landing/>
-                </Route>
-                <Route path = "/showall">
-                  <Showall />
-                </Route>
-                <Route path = "/addpost">
-                  <WEditor /> 
-                </Route>
-                <Route path = "/details/:id">
-                  <Details />
-                </Route>
-                <Route path = "/profile/:id">
-                  <Profile />
-                </Route>               
-              </Switch>
-          </Router>
+
+        <Switch>
+          <Route path="/user/signup">
+            <SignupPage />
+          </Route>
+          <Route path="/user/login">
+            <LoginPage />
+          </Route>
+          <Route exact path="/">
+            <Landing />
+          </Route>
+          <Route path="/showall">
+            {/* <Showall /> */}
+            <Postlist />
+          </Route>
+          <Route path="/addpost">
+            <WEditor />
+          </Route>
+          <Route path="/details/:id">
+            <Details />
+          </Route>
+          <Route path="/profile/:id">
+            <Profile />
+          </Route>
+        </Switch>
+      </Router>
     </Provider>
   );
 }

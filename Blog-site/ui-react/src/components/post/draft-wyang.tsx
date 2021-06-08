@@ -1,5 +1,5 @@
 import {Editor} from 'react-draft-wysiwyg';
-// import 'F:/mindtree/Full_Project_01_words_of_wonder/Words-of-Wonder/frontend-react/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState} from 'draft-js';
 import React, { useState } from 'react';
 import {stateToHTML} from 'draft-js-export-html';
