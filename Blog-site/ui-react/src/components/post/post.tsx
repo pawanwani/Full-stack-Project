@@ -20,7 +20,7 @@ import { useHistory } from 'react-router';
 
 const useStyles = makeStyles({
   card: {
-    display: 'flex',
+    // display: 'flex',
   },
   cardDetails: {
     flex: 1,

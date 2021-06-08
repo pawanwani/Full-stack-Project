@@ -1,7 +1,22 @@
-export default (state = [], action: any) => {
+const initialState = {
+  login : false
+}
+
+
+export default (state = initialState, action: any) => {
     switch (action.type) {
-      case "FETCH_ALL":
-        return action.payload;
+      case "SIGN-IN":
+        return {
+          ...state,
+          login : true,
+          user : action.payload
+        };
+      case "SIGN_OUT":
+        return {
+          ...state,
+          login : false,
+          user : {}
+        }
   
       default:
         return state;

@@ -10,14 +10,16 @@ import Navbar from './components/screens/navbar';
 import Showall from './components/screens/Showall';
 import WEditor from "./components/post/draft-wyang";
 import Details from './components/screens/details';
+import Profile from './components/screens/Profile';
 
 
 
 function App() {
   return (
     <Provider store={store}>
-      <Navbar />
-          <Router>
+      <Router>
+        <Navbar />
+          
               <Switch>
                 <Route path = "/user/signup">
                     <SignupPage />
@@ -36,7 +38,10 @@ function App() {
                 </Route>
                 <Route path = "/details/:id">
                   <Details />
-                </Route>                
+                </Route>
+                <Route path = "/profile/:id">
+                  <Profile />
+                </Route>               
               </Switch>
           </Router>
     </Provider>

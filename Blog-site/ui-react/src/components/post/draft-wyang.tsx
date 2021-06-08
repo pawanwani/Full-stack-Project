@@ -5,12 +5,26 @@ import React, { useState } from 'react';
 import {stateToHTML} from 'draft-js-export-html';
 import {Button, Container, TextField} from '@material-ui/core';
 import SavePost from '../requests/putPost';
+import { makeStyles } from '@material-ui/core/styles';
 
 
+const useStyles = makeStyles({
+    putpost: {
+        border: '1px solid #ddd',
+        borderRadius: 2,
+        boxShadow: 'inset 0px 1px 8px -3px #ABABAB',
+        padding: 20,
+        backgroundColor: '#fefefe',
+    },
+    submitButton : {
+        float : "right"
+    }
 
+})
 
 
 const WEditor = () =>{
+    const classes = useStyles();
     const [state, setState] = useState(EditorState.createEmpty());
     const [title, setTitle] = useState(' ');
 
@@ -28,7 +42,9 @@ const WEditor = () =>{
     }
 
     return(
-        <Container>
+        <div>
+        <Container className={classes.putpost}>
+
             <Editor
                 editorState = {state}
                 wrapperClassName="wrapper-class"
@@ -50,11 +66,12 @@ const WEditor = () =>{
                 disabled
                 value={stateToHTML(state.getCurrentContent())}
             /> */}
-            <Button variant = "contained" color = "primary" onClick = {handleSave}>
+            <Button variant = "contained" color = "primary" onClick = {handleSave} className = {classes.submitButton}>
                 Save
             </Button>
             </div>
         </Container>
+        </div>
     )
 }
 
