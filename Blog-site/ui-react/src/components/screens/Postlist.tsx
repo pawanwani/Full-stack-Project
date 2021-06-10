@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
@@ -14,6 +12,7 @@ import { Avatar, Box } from "@material-ui/core";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import Banner from "../images/banner.jpg";
+import { useDispatch, useSelector } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(8),
@@ -37,21 +36,24 @@ export default function Postlist() {
   const [data, setData] = useState<any>([{}]);
   const [sc, setsc] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
+  // const blog = useSelector(state => state.blogs)
 
   useEffect(() => {
+
     AllData().then((data: any) => {
-      console.log(data);
       setData(data);
       if (data.message === "succsful") {
         setsc(true);
       }
     });
+
   }, []);
   return (
     <React.Fragment>
       <div>
-        <Container maxWidth="lg">
-          <img src={Banner} style={{ width: "100vw" }}></img>
+        <Container maxWidth="lg" style={{ padding: "0px" }}>
+          <img src={Banner} width="100%" height="500px"></img>
         </Container>
         {sc ? (
           <Container className={classes.cardGrid} maxWidth="md">

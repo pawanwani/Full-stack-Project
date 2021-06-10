@@ -2,9 +2,8 @@ import { Container } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import parse from 'html-react-parser';
-import GetDetails from '../requests/getDetails';
-
-
+import "./styles/detilsPage.css";
+import GetDetails from "../requests/getDetails";
 const bodytohtml = (body:string) =>{
     return(
         parse(body)
@@ -32,10 +31,16 @@ const Details = () =>{
     }, []) 
 
     return (
-        <Container>
-            {bodytohtml(detail)}
-        </Container>
-    )
+      <Container
+     
+          className="details-page align-center "
+   
+            style={{ width: "60%", marginTop:  "20px",paddingTop:"20px"}}
+      
+      >
+        {bodytohtml(detail)}
+      </Container>
+    );
 }
 
 
