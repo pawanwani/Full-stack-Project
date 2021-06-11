@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {Avatar, Container, Grid, Box, Paper, Typography, Button, Tabs, Tab} from '@material-ui/core'
 import {Settings} from '@material-ui/icons/';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -65,15 +65,10 @@ return {
 const ProfilePage = () => {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
-    const [info, setInfo] = React.useState(" ")
 
     const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
         setValue(newValue);
     };
-
-    useEffect(()=>{
-        
-    })
 
 
     return(

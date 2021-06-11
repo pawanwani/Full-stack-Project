@@ -1,4 +1,4 @@
-import { Button, Grid, TextField} from "@material-ui/core";
+import { Button, Grid, TextField } from "@material-ui/core";
 import React, { ReactElement, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import BlogImg from "../images/blogImg.svg";
@@ -12,10 +12,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControl from "@material-ui/core/FormControl";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import { Link, useHistory } from "react-router-dom";
-import PostLogin from '../requests/postLogin';
-
-
+import { Link } from "react-router-dom";
 
 interface Props {}
 interface State {
@@ -38,9 +35,6 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 export default function LoginPage({}: Props): ReactElement {
   const classes = useStyles();
-  const history = useHistory();
-  const [email, setEmail] = useState(" ");
-  const [err, setErr] = useState(false);
   const [values, setValues] = React.useState<State>({
     password: "",
     showPassword: false,
@@ -60,26 +54,9 @@ export default function LoginPage({}: Props): ReactElement {
   ) => {
     event.preventDefault();
   };
-
-
-  const handleSignin = () => {
-    PostLogin(email, values.password)
-    .then(output => {
-      if(output.message === "succesful"){
-        history.push("/")
-      }
-      else{
-        setErr(true);
-      }
-    })
-
-  }
-
   return (
     <div className="bg-c wh-100">
       <Container className="mt-10 bradius img-shadow">
-        {err ? 
-        <h2 style = {{color : "red"}}>Error While Login</h2>: null}
         <Row className="h-600">
           <Col xs={12} md={7} className="bg-color blb-blt ">
             <img className="wh-100 blb-blt" src={BlogImg}></img>
@@ -106,7 +83,7 @@ export default function LoginPage({}: Props): ReactElement {
                         alignItems="flex-end"
                       >
                         <Grid item>
-                          <TextField id="input-with-icon-grid" label="Email" onChange = {(e:React.ChangeEvent<HTMLInputElement>) => {setEmail(e.currentTarget.value)}} />
+                          <TextField id="input-with-icon-grid" label="Email" />
                         </Grid>
                         <Grid item style={{borderBottom:"1px solid #949494"}}>
                           <EmailRoundedIcon />
@@ -156,7 +133,6 @@ export default function LoginPage({}: Props): ReactElement {
                           color: "white",
                           padding: " 8px 55px",
                         }}
-                        onClick = {handleSignin}
                       >
                         Sign in
                       </Button>

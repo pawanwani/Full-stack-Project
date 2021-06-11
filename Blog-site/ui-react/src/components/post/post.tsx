@@ -13,14 +13,12 @@ import {IconButton, Avatar, CardHeader, CardActions} from '@material-ui/core'
 import {MoreVert, Favorite, Share} from '@material-ui/icons'
 import moment from 'moment';
 import UpdateIcon from '@material-ui/icons/Update';
-import { useHistory } from 'react-router';
-
 
 
 
 const useStyles = makeStyles({
   card: {
-    // display: 'flex',
+    display: 'flex',
   },
   cardDetails: {
     flex: 1,
@@ -43,11 +41,6 @@ const useStyles = makeStyles({
 export default function FeaturedPost(props:any) {
   const classes = useStyles();
   const { post } = props;
-  const history = useHistory();
-
-  const handleClick = (id:string) => {
-    history.push("/details/"+id)
-  }
 
   return (
     <Grid item xs={12} md={6}>
@@ -72,7 +65,7 @@ export default function FeaturedPost(props:any) {
         title="Paella dish"
       />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p"  onClick = {()=>{handleClick(post._id)}}>
+        <Typography variant="body2" color="textSecondary" component="p">
             {post.subtitle}
         </Typography>
       </CardContent>
