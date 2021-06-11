@@ -5,7 +5,7 @@ import Post from '../post/post';
 
 // material ui library
 import { makeStyles } from '@material-ui/core/styles';
-import {Avatar, Container, Typography,} from '@material-ui/core';
+import {Avatar, Container, Typography} from '@material-ui/core';
 import {Box} from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -22,18 +22,15 @@ import { Paper, Grid } from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
     root: {
-        display : 'flex',
-
     },
     content: {
-
+      padding: 24,
     },
     mainGrid: {
       },
     avatar: {
 
     },
-    
   }));
 
 
@@ -46,32 +43,32 @@ const Showall = () =>{
     useEffect(()=>{
         AllData()
         .then(data=>{
-            console.log(data);
+            console.log(data)
             setData(data)
             if(data.message === 'succsful'){
                 setsc(true)
-                
             }
         })
     }, [])
 
+    const bodytohtml = (body:string) =>{
+        return(
+            parse(body)
+        )
+    }
+
     return(
-        <Container>
-            <div>
-                {sc ?
-                    <Grid container spacing={4} className= {cardStyles.root}>
-                        {data.data.map((post:any) =>(
-                            <Post key = {post.title} post={post}/>
-                        )
-                        )}
-                    </Grid> : null }  
-            </div>
-        </Container>
+        <div>
+            {sc ?
+                <Grid container spacing={4} style = {{display : 'flex'}}>
+                    {data.data.map((post:any) =>(
+                        <Post key = {post.title} post={post}/>
+                    )
+                    )}
+                </Grid> : null }  
+        </div>
     )
 }
 
 
 export default Showall;
-
-
-

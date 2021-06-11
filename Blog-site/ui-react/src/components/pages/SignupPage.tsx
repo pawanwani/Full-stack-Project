@@ -24,7 +24,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import BlogImg from "../images/blogImg.svg";
 import { Link } from "react-router-dom";
-import { userSignUp } from "../service/userServices";
+import { userSignUp } from "../service/service";
 
 interface Props {}
 interface State {
